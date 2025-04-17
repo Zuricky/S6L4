@@ -1,7 +1,9 @@
 package epicode.u5d8hw.controllers;
 
 import epicode.u5d8hw.entities.Author;
+import epicode.u5d8hw.payloads.NewAuthorPayload;
 import epicode.u5d8hw.services.AuthorsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,7 @@ public class AuthorsController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Author saveAuthor(@RequestBody Author body) throws Exception {
+    public Author saveAuthor(@Valid @RequestBody Author body) {
         return authorsService.save(body);
     }
 
@@ -40,5 +42,4 @@ public class AuthorsController {
     public void findAndDelete(@PathVariable int authorId) {
         authorsService.findByIdAndDelete(authorId);
     }
-
 }

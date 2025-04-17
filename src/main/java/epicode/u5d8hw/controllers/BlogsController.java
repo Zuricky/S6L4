@@ -4,6 +4,7 @@ import epicode.u5d8hw.entities.Blogpost;
 import epicode.u5d8hw.exceptions.NotFoundException;
 import epicode.u5d8hw.payloads.NewBlogPostPayload;
 import epicode.u5d8hw.services.BlogsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BlogsController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Blogpost saveBlog(@RequestBody NewBlogPostPayload body) {
+    public Blogpost saveBlog(@Valid @RequestBody NewBlogPostPayload body) {
         return blogsService.save(body);
     }
 
